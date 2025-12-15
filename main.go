@@ -37,10 +37,12 @@ func main() {
 	// ルーティングの設定
 	r := mux.NewRouter()
 	r.HandleFunc("/posts", handler.CreateHandler).Methods("POST")
+	r.HandleFunc("/posts", handler.IndexHandler).Methods("GET")
 
 	// APIサーバを起動
 	log.Println("APIサーバを起動しました。ポート: " + apiport)
 	if err := http.ListenAndServe(":"+apiport, r); err != nil {
 		log.Fatal(err)
 	}
+
 }
